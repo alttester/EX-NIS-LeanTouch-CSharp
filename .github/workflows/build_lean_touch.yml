@@ -13,6 +13,12 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Checkout Submodules to Development Branch
+        run: |
+          git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git pull origin development
+
       - name: Build Lean Touch
         shell: bash
         run: |
@@ -34,6 +40,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: "recursive"
+
+      - name: Checkout Submodules to Development Branch
+        run: |
+          git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git pull origin development
 
       - name: Build Lean Touch
         run: |
@@ -57,6 +69,12 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Checkout Submodules to Development Branch
+        run: |
+          git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git pull origin development
+
       - name: Build Lean Touch
         run: |
           export ALTSERVER_PORT=13000
@@ -78,6 +96,12 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Checkout Submodules to Development Branch
+        run: |
+          git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git pull origin development
+
       - name: Build Lean Touch
         run: |
           export ALTSERVER_PORT=13000
@@ -98,6 +122,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: "recursive"
+
+      - name: Checkout Submodules to Development Branch
+        run: |
+          git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git pull origin development
 
       - name: Build Lean Touch
         run: |
