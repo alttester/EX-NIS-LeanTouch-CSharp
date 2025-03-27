@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using AltTester.AltTesterUnitySDK.Driver;
+using AltTester.AltTesterSDK.Driver;
 using System.Threading;
 
 public class AltTester_NIS_tests
