@@ -17,8 +17,9 @@ jobs:
         run: |
           git submodule foreach --recursive git fetch origin
           git submodule foreach --recursive git reset --hard origin/development
+          git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development --ff-only
+          git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
         shell: bash
@@ -46,8 +47,9 @@ jobs:
         run: |
           git submodule foreach --recursive git fetch origin
           git submodule foreach --recursive git reset --hard origin/development
+          git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development --ff-only
+          git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
         run: |
@@ -75,8 +77,9 @@ jobs:
         run: |
           git submodule foreach --recursive git fetch origin
           git submodule foreach --recursive git reset --hard origin/development
+          git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development --ff-only
+          git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
         run: |
@@ -103,8 +106,9 @@ jobs:
         run: |
           git submodule foreach --recursive git fetch origin
           git submodule foreach --recursive git reset --hard origin/development
+          git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development --ff-only
+          git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
         run: |
@@ -131,8 +135,9 @@ jobs:
         run: |
           git submodule foreach --recursive git fetch origin
           git submodule foreach --recursive git reset --hard origin/development
+          git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development --ff-only
+          git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
         run: |
