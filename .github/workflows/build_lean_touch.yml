@@ -16,8 +16,9 @@ jobs:
       - name: Checkout Submodules to Development Branch
         run: |
           git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development
+          git submodule foreach --recursive git pull origin development --ff-only
 
       - name: Build Lean Touch
         shell: bash
@@ -44,8 +45,9 @@ jobs:
       - name: Checkout Submodules to Development Branch
         run: |
           git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development
+          git submodule foreach --recursive git pull origin development --ff-only
 
       - name: Build Lean Touch
         run: |
@@ -72,8 +74,9 @@ jobs:
       - name: Checkout Submodules to Development Branch
         run: |
           git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development
+          git submodule foreach --recursive git pull origin development --ff-only
 
       - name: Build Lean Touch
         run: |
@@ -99,8 +102,9 @@ jobs:
       - name: Checkout Submodules to Development Branch
         run: |
           git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development
+          git submodule foreach --recursive git pull origin development --ff-only
 
       - name: Build Lean Touch
         run: |
@@ -126,8 +130,9 @@ jobs:
       - name: Checkout Submodules to Development Branch
         run: |
           git submodule foreach --recursive git fetch origin
+          git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git checkout development --force
-          git submodule foreach --recursive git pull origin development
+          git submodule foreach --recursive git pull origin development --ff-only
 
       - name: Build Lean Touch
         run: |
