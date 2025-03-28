@@ -19,6 +19,7 @@ jobs:
           git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git config pull.rebase true
           git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
@@ -49,6 +50,7 @@ jobs:
           git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git config pull.rebase true
           git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
@@ -79,6 +81,7 @@ jobs:
           git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git config pull.rebase true
           git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
@@ -108,6 +111,7 @@ jobs:
           git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git config pull.rebase true
           git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
@@ -137,6 +141,7 @@ jobs:
           git submodule foreach --recursive git reset --hard origin/development
           git submodule foreach --recursive git clean -fd
           git submodule foreach --recursive git checkout development --force
+          git submodule foreach --recursive git config pull.rebase true
           git submodule foreach --recursive git pull origin development --force
 
       - name: Build Lean Touch
