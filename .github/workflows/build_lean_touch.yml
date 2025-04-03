@@ -27,6 +27,7 @@ jobs:
           git submodule update --init --recursive
         
       - name: Checkout AltTester Submodule Branch
+        shell: bash
         run: |
           cd LeanTouch/Assets/AltTester-Unity-SDK
           git fetch
