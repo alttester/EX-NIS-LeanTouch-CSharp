@@ -30,7 +30,8 @@ jobs:
         run: |
           cd LeanTouch/Assets/AltTester-Unity-SDK
           git fetch
-          git reset --hard origin "${{ github.event.inputs.branch || 'development' }}"
+          git checkout "${{ github.event.inputs.branch || 'development' }}"
+          git rebase origin/"${{ github.event.inputs.branch || 'development' }}" || (git rebase --abort && git pull --ff-only origin "${{ github.event.inputs.branch || 'development' }}")
 
       - name: Build Lean Touch
         shell: bash
