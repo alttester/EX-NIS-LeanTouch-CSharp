@@ -32,7 +32,7 @@ jobs:
           cd LeanTouch/Assets/AltTester-Unity-SDK
           git fetch
           git checkout "${{ github.event.inputs.branch || 'development' }}"
-          git pull --force
+          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build Lean Touch
         shell: bash
@@ -169,7 +169,7 @@ jobs:
           cd LeanTouch/Assets/AltTester-Unity-SDK
           git fetch
           git checkout "${{ github.event.inputs.branch || 'development' }}"
-          git pull --force
+          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build Lean Touch
         run: |
