@@ -28,12 +28,9 @@ jobs:
         
       - name: Checkout AltTester Submodule Branch
         run: |
-          ls
           cd LeanTouch/Assets/AltTester-Unity-SDK
-          ls
           git fetch
-          git checkout "${{ github.event.inputs.branch || 'development' }}"
-          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
+          git reset --hard origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build Lean Touch
         shell: bash
