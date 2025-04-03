@@ -32,8 +32,7 @@ jobs:
           cd LeanTouch/Assets/AltTester-Unity-SDK
           git fetch
           git checkout "${{ github.event.inputs.branch || 'development' }}"
-          git rebase --abort
-          git rebase origin/"${{ github.event.inputs.branch || 'development' }}" || (git rebase --abort && git pull --ff-only origin "${{ github.event.inputs.branch || 'development' }}")
+          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build Lean Touch
         shell: bash
@@ -50,66 +49,76 @@ jobs:
             **/LeanTouchBuild/*
             **/*.log
 
-  # build-macOS:
-  #   runs-on: [self-hosted, MAC37]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
+  build-macOS:
+    runs-on: [self-hosted, MAC37]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
 
-  #     - name: Checkout Submodules to Development Branch
-  #       run: |
-  #         git submodule foreach --recursive git fetch origin
-  #         git submodule foreach --recursive git reset --hard origin/development
-  #         git submodule foreach --recursive git clean -fd
-  #         git submodule foreach --recursive git checkout development --force
-  #         git submodule foreach --recursive git config pull.rebase true
-  #         git submodule foreach --recursive git pull origin development --force
+      - name: Update Submodules
+        run: |
+          git submodule foreach --recursive git reset --hard
+          git submodule foreach --recursive git clean -fd
+          git submodule update --init --recursive
+        
+      - name: Checkout AltTester Submodule Branch
+        shell: bash
+        run: |
+          cd LeanTouch/Assets/AltTester-Unity-SDK
+          git fetch
+          git checkout "${{ github.event.inputs.branch || 'development' }}"
+          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
-  #     - name: Build Lean Touch
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
-  #         echo $CI_PROJECT_DIR
-  #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/LeanTouch -executeMethod BuildLeanTouch.MacBuildFromCommandLine -logFile buildMac.log -quit
+      - name: Build Lean Touch
+        run: |
+          export ALTSERVER_PORT=13000
+          export ALTSERVER_HOST="192.168.11.35"
+          echo $CI_PROJECT_DIR
+          $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/LeanTouch -executeMethod BuildLeanTouch.MacBuildFromCommandLine -logFile buildMac.log -quit
 
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildMacArtifact
-  #         path: |
-  #           **/LeanTouch.app
-  #           **/*.log
+      - uses: actions/upload-artifact@v4
+        if: always() # run this step even if one of the previous steps failed
+        with:
+          name: BuildMacArtifact
+          path: |
+            **/LeanTouch.app
+            **/*.log
 
-  # build-android:
-  #   runs-on: [self-hosted, MAC37]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
+  build-android:
+    runs-on: [self-hosted, MAC37]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
 
-  #     - name: Checkout Submodules to Development Branch
-  #       run: |
-  #         git submodule foreach --recursive git fetch origin
-  #         git submodule foreach --recursive git reset --hard origin/development
-  #         git submodule foreach --recursive git clean -fd
-  #         git submodule foreach --recursive git checkout development --force
-  #         git submodule foreach --recursive git config pull.rebase true
-  #         git submodule foreach --recursive git pull origin development --force
+      - name: Update Submodules
+        run: |
+          git submodule foreach --recursive git reset --hard
+          git submodule foreach --recursive git clean -fd
+          git submodule update --init --recursive
+        
+      - name: Checkout AltTester Submodule Branch
+        shell: bash
+        run: |
+          cd LeanTouch/Assets/AltTester-Unity-SDK
+          git fetch
+          git checkout "${{ github.event.inputs.branch || 'development' }}"
+          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
-  #     - name: Build Lean Touch
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
-  #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/LeanTouch -executeMethod BuildLeanTouch.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
+      - name: Build Lean Touch
+        run: |
+          export ALTSERVER_PORT=13000
+          export ALTSERVER_HOST="192.168.11.35"
+          $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/LeanTouch -executeMethod BuildLeanTouch.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
 
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildAndroidArtifact
-  #         path: |
-  #           **/LeanTouch.apk
-  #           **/*.log
+      - uses: actions/upload-artifact@v4
+        if: always() # run this step even if one of the previous steps failed
+        with:
+          name: BuildAndroidArtifact
+          path: |
+            **/LeanTouch.apk
+            **/*.log
 
   # build-iOS:
   #   runs-on: [self-hosted, MAC37]
@@ -141,32 +150,37 @@ jobs:
   #           **/LeanTouch
   #           **/*.log
 
-  # build-WebGL:
-  #   runs-on: [self-hosted, MAC37]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
+  build-WebGL:
+    runs-on: [self-hosted, MAC37]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
 
-  #     - name: Checkout Submodules to Development Branch
-  #       run: |
-  #         git submodule foreach --recursive git fetch origin
-  #         git submodule foreach --recursive git reset --hard origin/development
-  #         git submodule foreach --recursive git clean -fd
-  #         git submodule foreach --recursive git checkout development --force
-  #         git submodule foreach --recursive git config pull.rebase true
-  #         git submodule foreach --recursive git pull origin development --force
+      - name: Update Submodules
+        run: |
+          git submodule foreach --recursive git reset --hard
+          git submodule foreach --recursive git clean -fd
+          git submodule update --init --recursive
+        
+      - name: Checkout AltTester Submodule Branch
+        shell: bash
+        run: |
+          cd LeanTouch/Assets/AltTester-Unity-SDK
+          git fetch
+          git checkout "${{ github.event.inputs.branch || 'development' }}"
+          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
-  #     - name: Build Lean Touch
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
-  #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/LeanTouch -executeMethod BuildLeanTouch.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
+      - name: Build Lean Touch
+        run: |
+          export ALTSERVER_PORT=13000
+          export ALTSERVER_HOST="192.168.11.35"
+          $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/LeanTouch -executeMethod BuildLeanTouch.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
 
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildWebGLArtifact
-  #         path: |
-  #           **/build/webgl
-  #           **/*.log
+      - uses: actions/upload-artifact@v4
+        if: always() # run this step even if one of the previous steps failed
+        with:
+          name: BuildWebGLArtifact
+          path: |
+            **/build/webgl
+            **/*.log
