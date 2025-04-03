@@ -17,7 +17,7 @@
 
 using System;
 using AltTester.AltTesterUnitySDK;
-using AltTester.AltTesterUnitySDK.Driver;
+using AltTester.AltTesterSDK.Driver;
 using AltTester.AltTesterUnitySDK.Editor;
 using AltTester.AltTesterUnitySDK.Editor.Logging;
 using UnityEditor;
@@ -39,7 +39,7 @@ public class BuildLeanTouch
             PlayerSettings.defaultScreenWidth = 1920;
 
             logger.Debug("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-            var buildPlayerOptions = GetBuildPlayerOptions("LeanTouch.exe", BuildTarget.StandaloneWindows64);
+            var buildPlayerOptions = GetBuildPlayerOptions("LeanTouchBuild/LeanTouch.exe", BuildTarget.StandaloneWindows64);
             buildGame(buildPlayerOptions, BuildTargetGroup.Standalone);
 
         }
@@ -177,7 +177,11 @@ public class BuildLeanTouch
     {
         return new string[]
                 {
-                    "Assets/Scenes/LeanTouch+.unity"
+                    "Assets/Plugins/CW/LeanTouch/Examples/05    Direction 4.unity",
+                    "Assets/Plugins/CW/LeanTouch/Examples/18    Destroy.unity",
+                    "Assets/Plugins/CW/LeanTouch/Examples/15 Tap To Select.unity",
+                    "Assets/Plugins/CW/LeanTouch/Examples/01 Finger Down.unity",
+                    "Assets/Plugins/CW/LeanTouch/Examples/07 Finger Tap.unity"
                 };
     }
     private static void buildGame(BuildPlayerOptions buildPlayerOptions, BuildTargetGroup targetGroup)
