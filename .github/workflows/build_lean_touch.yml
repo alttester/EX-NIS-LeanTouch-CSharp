@@ -29,7 +29,7 @@ jobs:
       - name: Checkout AltTester Submodule Branch
         run: |
           ls
-          cd Assets/AltTester-Unity-SDK
+          cd LeanTouch/Assets/AltTester-Unity-SDK
           ls
           git fetch
           git checkout "${{ github.event.inputs.branch || 'development' }}"
