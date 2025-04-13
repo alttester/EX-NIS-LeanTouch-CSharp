@@ -236,9 +236,9 @@ public class BuildLeanTouch
     {
         string versionNumber = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
         PlayerSettings.companyName = "Altom";
-        PlayerSettings.productName = "Lego";
+        PlayerSettings.productName = "LeanTouch";
         PlayerSettings.bundleVersion = versionNumber;
-        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.altom.Lego");
+        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.altom.LeanTouch");
         PlayerSettings.SetApiCompatibilityLevel(targetGroup, ApiCompatibilityLevel.NET_4_6);
         AltBuilder.AddAltTesterInScriptingDefineSymbolsGroup(targetGroup);
 
